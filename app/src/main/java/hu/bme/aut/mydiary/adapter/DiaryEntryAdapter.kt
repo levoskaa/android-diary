@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -34,12 +35,16 @@ class DiaryEntryAdapter(
             tvPlace.text = diaryEntry.place
             tvDate.text = String.format("%02d.%02d.%d", diaryEntry.creationDate.date, diaryEntry.creationDate.month, diaryEntry.creationDate.year)
             cbIsPersonal.isChecked = diaryEntry.isPersonal
+            bDelete.setOnClickListener {
+                diaryEntries.removeAt(position)
+                notifyDataSetChanged()
+            }
         }
     }
 
     fun addDiaryEntry(diaryEntry: DiaryEntry) {
         diaryEntries.add(0, diaryEntry)
-        notifyItemInserted(0)
+        notifyDataSetChanged()
     }
 
     fun deleteAllEntries() {
@@ -53,5 +58,6 @@ class DiaryEntryAdapter(
         val tvPlace: TextView = itemView.place
         val tvDate: TextView = itemView.date
         val cbIsPersonal: CheckBox = itemView.isPersonal
+        val bDelete: Button = itemView.bDelete
     }
 }
