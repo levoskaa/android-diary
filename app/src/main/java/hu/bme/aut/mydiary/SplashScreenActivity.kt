@@ -21,7 +21,7 @@ class SplashScreenActivity : AppCompatActivity() {
                     val animation = AnimationUtils.loadAnimation(baseContext, R.anim.splash_transition)
                     tv.startAnimation(animation)
                     Thread.sleep(1500)
-                    val intent = Intent(baseContext, MainActivity::class.java)
+                    val intent = Intent(baseContext, DiaryListActivity::class.java)
                     startActivity(intent)
                 } catch (e: Exception) {
                     e.printStackTrace()

@@ -12,7 +12,7 @@
         <activity
             android:name=".DiaryListActivity"
             android:label="@string/title_activity_diarylist_scrolling"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".SplashScreenActivity"
             android:noHistory="true"
@@ -23,7 +23,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

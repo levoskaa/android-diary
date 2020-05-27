@@ -12,7 +12,7 @@ import hu.bme.aut.mydiary.model.DiaryEntry
 import kotlinx.android.synthetic.main.content_viewholder.view.*
 
 class DiaryEntryAdapter(
-    private val diaryEntries: List<DiaryEntry>,
+    private val diaryEntries: MutableList<DiaryEntry>,
     private val context: Context
 ) : RecyclerView.Adapter<DiaryEntryAdapter.DiaryEntriesViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DiaryEntriesViewHolder {
@@ -32,9 +32,19 @@ class DiaryEntryAdapter(
             tvTitle.text = diaryEntry.title
             tvText.text = diaryEntry.text
             tvPlace.text = diaryEntry.place
-            tvDate.text = diaryEntry.creationDate.toString()
+            tvDate.text = String.format("%02d.%02d.%d", diaryEntry.creationDate.date, diaryEntry.creationDate.month, diaryEntry.creationDate.year)
             cbIsPersonal.isChecked = diaryEntry.isPersonal
         }
+    }
+
+    fun addDiaryEntry(diaryEntry: DiaryEntry) {
+        diaryEntries.add(0, diaryEntry)
+        notifyItemInserted(0)
+    }
+
+    fun deleteAllEntries() {
+        diaryEntries.clear()
+        notifyDataSetChanged()
     }
 
     inner class DiaryEntriesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
